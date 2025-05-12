@@ -4,12 +4,4 @@ Arai60[https://leetcode.com/problem-list/xo2bgr0r/]を解くためのリポジ�
 
 ## ルール
 
-問題ごとにブランチを切る（メインはこのReadme.mdくらいになるはず）
-ブランチで問題名フォルダを作り、その下でコーディングする。
-とりあえず解くためのファイル→step1
-それをきれいにしたもの→step2
-一度全部消して書き直すもの→Step3
-のファイル名で作成。
-考えていることはmemo.mdで作成
-
-ひとまずこれで動く
+https://note.com/iroha_afternoon/n/ne741c6d6f84e に従って作る
