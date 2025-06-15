@@ -6,14 +6,15 @@ class Solution:
         result = 0
         start_index = 0
         end_index = 0
-        set1 = set()
+        char_set = set()
+        
         for end_index, end_char in enumerate(s):
-            if end_char not in set1:
-                set1.add(end_char)
+            if end_char not in char_set:
+                char_set.add(end_char)
             else:
                 # start_indexからpopして被っているか確認
-                while(s[start_index]!=s[end_index]):
-                    set1.remove(s[start_index])
+                while (s[start_index] != s[end_index]):
+                    char_set.remove(s[start_index])
                     start_index += 1
                 #input[start_index]==input[end_index]のところで止まっているため、start_indexを進める。
                 start_index += 1
