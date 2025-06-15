@@ -21,9 +21,9 @@ class Solution:
 
 ## step2
 
-２回目以上の情報はいらないから、charをsetでもつものと、deplicate_setで持つ実装を見つけた
-出現回数を調べるCounter組み込み関数がある
-step1, 2で時間測り忘れている
+- ２回目以上の情報はいらないから、charをsetでもつものと、deplicate_setで持つ実装を見つけた
+- 出現回数を調べるCounter組み込み関数がある
+- step1, 2で時間測り忘れている
 
 ### 出現回数を調べる実装
 
@@ -46,7 +46,7 @@ class Solution:
 
 ### Counterを使った実装
 
-大文字小文字の区別あり(x collections.countersでは動かない）
+- 大文字小文字の区別あり(x collections.countersでは動かない）
 
 ```python3
 class Solution:
