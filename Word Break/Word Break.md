@@ -240,3 +240,66 @@ class Solution:
             return True
         return False
 ```
+
+
+#### step4（コメントもらったあとの直し）
+
+##### dp
+- 変数名dpの変更
+- スライスからstartswithへの変更
+- 直接 is_prefix_formatable(旧dp)[len(s)]を返すようにした
+```python3
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        is_prefix_formatable = [False] * (len(s)+1)
+        is_prefix_formatable[0] = True
+
+        for i in range(len(s)):
+            if not is_prefix_formatable[i]:
+                continue
+            for word in wordDict:
+                if s.startswith(word, i):
+                    is_prefix_formatable[i+len(word)] = True
+
+        return is_prefix_formatable[len(s)]
+```
+
+#### 再帰
+- functools.cacheを学ぶ
+    - 公式が提供しているメモ化のようなもの
+    - 引数ごとに計算した結果をcacheして、結果があればそこから返すもの
+    - デメリットとしては
+        - 変数に制限がある(listでは使えない)
+        - return以外の副作用は再現されない(print()など)
+        - キャッシュを使う(サイズの制限)
+    - などあるが、leetcodeくらい小さいコードで再帰するならば使い得なところはある。
+- 再帰ももっと整理されます
+```python3
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        @functools.cache
+        def _rec(index: int) -> bool:
+            if index == len(s):
+                return True
+            
+            for word in wordDict:
+                if s.startswith(word, index):
+                    if _rec(index + len(word)):
+                        return True
+            return False
+            
+        return _rec(0)
+```
+
+内包表記でより簡潔にした。ぎりぎりこちらのほうが読みやすさが勝りそう。
+```python3
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        @functools.cache
+        def _rec(index: int) -> bool:
+            if index == len(s):
+                return True
+            return any(s.startswith(word, index) and _rec(index + len(word)) for word in wordDict)
+
+        return _rec(0)
+```
