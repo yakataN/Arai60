@@ -220,3 +220,31 @@ class Solution:
             return False
         return True
 ```
+
+#### step4　指摘を元に変更
+
+- CLOSE_TO_OPEN_BRACKETSをOPEN_TO_CLOSE_BRACKETSに
+- 変数名変更: visited→stack_open_brackets
+- pop()とif文を合わせて条件分岐を減らす
+- returnの更新
+
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        
+        OPEN_BRACKETS = ["(", "{", "["]
+        OPEN_TO_CLOSE_BRACKETS = {
+            "(": ")",
+            "{": "}",
+            "[": "]"
+        }
+        stack_open_brackets = []
+        
+        for character in s:
+            if character in OPEN_BRACKETS:
+                stack_open_brackets.append(character)
+            elif not (stack_open_brackets and character ==  OPEN_TO_CLOSE_BRACKETS[stack_open_brackets.pop()]):
+                return False
+        
+        return not stack_open_brackets
+```
